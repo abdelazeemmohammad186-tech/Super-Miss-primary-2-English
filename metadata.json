@@ -1,0 +1,7 @@
+{
+  "name": "Super Miss English - Primary 2",
+  "description": "An interactive AI-powered teacher for Grade 2 Egyptian students, following the official English curriculum with two teaching modes and full TTS support.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
