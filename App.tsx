@@ -6,7 +6,6 @@ import Dashboard from './components/Dashboard';
 import LessonView from './components/LessonView';
 import ModelInfoModal from './components/ModelInfoModal';
 
-// مفتاح ثابت لضمان بقاء الصورة حتى بعد تحديث التطبيق
 const STABLE_AVATAR_KEY = 'superMiss_final_avatar'; 
 
 const App: React.FC = () => {
@@ -17,9 +16,9 @@ const App: React.FC = () => {
   const [showModelInfo, setShowModelInfo] = useState(false);
   
   const [customAvatar, setCustomAvatar] = useState<string>(() => {
-    // محاولة استعادة الصورة المحفوظة عند التحميل
     try {
-      return localStorage.getItem(STABLE_AVATAR_KEY) || TEACHER_AVATAR;
+      const saved = localStorage.getItem(STABLE_AVATAR_KEY);
+      return saved || TEACHER_AVATAR;
     } catch (e) {
       return TEACHER_AVATAR;
     }
@@ -36,9 +35,7 @@ const App: React.FC = () => {
     img.src = base64Str;
     img.onload = () => {
       const canvas = document.createElement('canvas');
-      // تصغير الصورة لـ 200 بكسل فقط لأنها تظهر كأيقونة صغيرة
-      // هذا يضمن بقاء الحجم صغيراً جداً ومناسباً للـ LocalStorage
-      const MAX_SIZE = 200; 
+      const MAX_SIZE = 400; 
       let width = img.width;
       let height = img.height;
 
@@ -61,23 +58,12 @@ const App: React.FC = () => {
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(img, 0, 0, width, height);
-        
-        // استخدام صيغة JPEG مع ضغط 0.7 لتقليل الحجم لأقصى درجة
-        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
-        
+        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
         setCustomAvatar(compressedBase64);
         try {
           localStorage.setItem(STABLE_AVATAR_KEY, compressedBase64);
-          console.log("Avatar saved successfully!");
         } catch (e) {
-          console.error("Storage full, could not save avatar", e);
-          // محاولة أخيرة بضغط أعلى جداً في حال فشل التخزين
-          try {
-            const ultraCompressed = canvas.toDataURL('image/jpeg', 0.3);
-            localStorage.setItem(STABLE_AVATAR_KEY, ultraCompressed);
-          } catch (err) {
-            alert("مساحة ذاكرة المتصفح ممتلئة، لا يمكن حفظ الصورة بشكل دائم.");
-          }
+          console.error("Storage issue", e);
         }
       }
     };

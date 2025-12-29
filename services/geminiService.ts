@@ -22,9 +22,12 @@ export async function getTeacherResponse(
 
 export async function generateSpeech(text: string): Promise<Uint8Array | null> {
   try {
+    // نطلب من الموديل قراءة النص ببطء شديد مع التوقف قليلاً بين الإنجليزية والعربية
+    const slowText = `Read very slowly and clearly for a child. Read each English phrase then its Arabic translation: ${text}`;
+    
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash-preview-tts",
-      contents: [{ parts: [{ text }] }],
+      contents: [{ parts: [{ text: slowText }] }],
       config: {
         responseModalities: [Modality.AUDIO],
         speechConfig: {
