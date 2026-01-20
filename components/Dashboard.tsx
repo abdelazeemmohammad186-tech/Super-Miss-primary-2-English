@@ -12,11 +12,11 @@ const Dashboard: React.FC<DashboardProps> = ({ units, onSelectUnit }) => {
     <div className="space-y-8 animate-fade-in py-6">
       <div className="text-center space-y-2">
         <div className="inline-block bg-blue-100 text-blue-600 text-xs font-bold px-4 py-1 rounded-full mb-2">
-          PRIMARY 2 • TERM 1
+          PRIMARY 2 • TERMS 1 & 2
         </div>
         <h2 className="text-3xl font-bold text-slate-800">Choose a Unit! 🌟</h2>
         <p className="text-slate-500">Pick a topic to start learning with Super Miss.</p>
-        <p className="text-slate-400 text-xs font-semibold">منهج اللغة الإنجليزية للصف الثاني الابتدائي - الترم الأول</p>
+        <p className="text-slate-400 text-xs font-semibold">منهج اللغة الإنجليزية للصف الثاني الابتدائي - الترم الأول والثاني</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -66,6 +66,12 @@ function getUnitEmoji(id: number) {
     case 4: return '👨‍👩‍👧';
     case 5: return '🏠';
     case 6: return '🛋️';
+    case 7: return '🌳';
+    case 8: return '🛍️';
+    case 9: return '⚽';
+    case 10: return '🚌';
+    case 11: return '🐫';
+    case 12: return '👨‍👩‍👦‍👦';
     default: return '📚';
   }
 }

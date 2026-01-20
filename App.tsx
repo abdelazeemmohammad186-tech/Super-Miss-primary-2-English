@@ -123,7 +123,7 @@ const App: React.FC = () => {
             </div>
             
             <h1 className="text-4xl font-black text-blue-600 mb-1 tracking-tight">Super Miss!</h1>
-            <p className="text-slate-400 font-bold mb-8 tracking-widest uppercase text-xs">Primary 2 • English Curriculum</p>
+            <p className="text-slate-400 font-bold mb-8 tracking-widest uppercase text-xs">Primary 2 • Terms 1 & 2</p>
             
             <div className="space-y-6 text-left">
               <div className="group">
@@ -183,7 +183,7 @@ const App: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-xl font-black text-blue-600 leading-none">Super Miss</h1>
-                <p className="text-[10px] font-black text-orange-400 uppercase tracking-widest">Primary 2 • Term 1</p>
+                <p className="text-[10px] font-black text-orange-400 uppercase tracking-widest">Primary 2 • Term 1 & 2</p>
               </div>
             </div>
             
